@@ -1,0 +1,44 @@
+.status-sections {
+  display: flex;
+  flex-direction: row;
+  height: 30vh;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 450px;
+}
+
+#resources-status, #skills-status, #bio-status {
+  border: 1px solid black;
+  flex-grow: 1;
+}
+
+h1 {
+  text-align: center;
+}
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.event-card {
+  border: 1px solid black;
+  margin-top: 10px;
+  height: 40vh;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input {
+  margin-bottom: 30px;
+}
+
+select {
+  margin-bottom: 10px;
+}
