@@ -5,34 +5,88 @@ import Dashboard from './Dashboard'
 
 function App() {
   const [state, setState] = useState({
-    name: 'Default Name',
-    health: 100,
-    funds: 0,
-    happiness: 100,
-    energy: 100,
-    connections: 0,
-    week: 1
+    profiles: [
+      { account_id: 1, account_name: "default_account" }
+    ],
+
+    characters:
+      [
+        {
+          character_owner: 1,
+          character_id: 1,
+          character_name: "Default Character Name",
+          character_avatar: "",
+          pet_name: "Default Pet Name",
+          pet_type: "Dog",
+          pet_avatar: ""
+        }
+      ],
+
+    stats:
+      [
+        {
+          stats_id: 1,
+          "stats_owner": 1,
+          "funds": 10000,
+          "happiness": 50,
+          "connections": 5,
+          "energy": 68,
+          "health": 35,
+          "current_week": 30
+        }
+      ],
+
+    skills: 
+      [
+        {
+          "skills_id": 1,
+          "skills_owner": 1,
+          "front_end": 6,
+          "back_end": 3,
+          "computer_science": 4,
+          "soft_skills": 6,
+          "luck": 2
+        }
+      ],
+
+    portfolios: 
+      [
+        {
+          "portfolio_id": 1,
+          "portfolio_owner": 1,
+          "career_path": "Front End",
+          "background": "Fast Food",
+          "personality": "Basic",
+          "education": "Basketweaving",
+          "bootcamp": "Scam",
+          "project_1_name": "Meme Generator 9001",
+          "project_1_description": "Breaking scouters",
+          "project_1_image": "https://www.placecage.com/200/200",
+          "project_2_name": "TODO-a11y",
+          "project_2_description": "not another todo app.",
+          "project_2_image": "https://www.placecage.com/250/250",
+          "project_3_name": null,
+          "project_3_description": null,
+          "project_3_image": null
+        }
+      ]
   })
 
   useEffect(() => {
     const fetchProfiles = async () => {
-      const result = await (await fetch('http://localhost:8000/profiles')).json()
-      console.log(result[0].account_name)
-      setState({
-        name: result[0].account_name
-      })
-      console.log(state)
+      const profiles = await (await fetch('http://localhost:8000/profiles')).json()
+      const characters = await (await fetch('http://localhost:8000/characters')).json()
       const stats = await (await fetch('http://localhost:8000/stats')).json()
+      const skills = await (await fetch('http://localhost:8000/skills')).json()
+      const portfolios = await (await fetch('http://localhost:8000/portfolios')).json()
+
       setState({
-        health: stats[0].health,
-        funds: stats[0].funds,
-        happiness: stats[0].happiness,
-        connections: stats[0].connections,
-        energy: stats[0].energy,
-        week: stats[0].current_week,
+        profiles,
+        characters,
+        stats,
+        skills,
+        portfolios
       })
-      console.log(stats)
-      console.log(state)
     }
     fetchProfiles();
   }, [])
