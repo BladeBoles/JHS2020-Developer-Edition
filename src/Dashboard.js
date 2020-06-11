@@ -4,21 +4,21 @@ export default function Dashboard() {
   return (
     <div>
       <section>
-      <div class="event-card">
+      <div className="event-card">
         <h3>Week 3</h3>
-        <div class="weekly-event">
+        <div className="weekly-event">
           <h4>Weekly Event</h4>
-          <label for="">There's a Web Developer meetup this week in your area.  Do you go?</label>
+          <label htmlFor="">There's a Web Developer meetup this week in your area.  Do you go?</label>
             <select name="" id="focus">
               <option value="yes">Attend</option>
               <option value="no">Play Video Games Instead</option>
             </select>
             <button>Let's Go!</button>
         </div>
-        <div class="weekly-choice">
+        <div className="weekly-choice">
           <h4>Weekly Focus</h4>
           <form action="">
-            <label for="">What will you focus on this week?</label>
+            <label htmlFor="">What will you focus on this week?</label>
             <select name="" id="focus">
               <option value="Coding">Coding Projects (+1 Front End & Back End, -10 Caffeine)</option>
               <option value="Networking">Networking (+1 Connections, +5 Stress)</option>
