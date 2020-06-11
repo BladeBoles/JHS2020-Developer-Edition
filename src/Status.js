@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 export default function Dashboard(props) {
-
+  console.log(props.values.name)
   return (
     <div>
       <section>

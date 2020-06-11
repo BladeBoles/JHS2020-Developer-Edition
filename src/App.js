@@ -16,21 +16,23 @@ function App() {
 
   useEffect(() => {
     const fetchProfiles = async () => {
-      const result = (await fetch('http://localhost:8000/profiles')).json()
-      // setState({
-      //   name: result[0].account_name
-      // })
-      console.log(result)
-      const stats = (await fetch('http://localhost:8000/stats')).json()
-      // setState({
-      //   health: stats.json()[0].health,
-      //   funds: stats.json()[0].funds,
-      //   happiness: stats.json()[0].happiness,
-      //   connections: stats.json()[0].connections,
-      //   energy: stats.json()[0].energy,
-      //   week: stats.json()[0].current_week,
-      // })
+      const result = await (await fetch('http://localhost:8000/profiles')).json()
+      console.log(result[0].account_name)
+      setState({
+        name: result[0].account_name
+      })
+      console.log(state)
+      const stats = await (await fetch('http://localhost:8000/stats')).json()
+      setState({
+        health: stats[0].health,
+        funds: stats[0].funds,
+        happiness: stats[0].happiness,
+        connections: stats[0].connections,
+        energy: stats[0].energy,
+        week: stats[0].current_week,
+      })
       console.log(stats)
+      console.log(state)
     }
     fetchProfiles();
   }, [])
