@@ -1,31 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 export default function Dashboard(props) {
   const { profiles, characters, stats, skills, portfolios } = props.values;
-  console.log(profiles)
-  let userSignedIn; 
-  try {
-    userSignedIn = profiles[1].account_id 
-  }
-  catch (err) {
-    userSignedIn = 1
-  }
+  console.log(portfolios)
+  let userSignedIn = profiles.length > 1 ? (profiles[0].account_id - 1) : 0;
 
-  const userCharacter = profiles.length > 1 ? characters[userSignedIn].character_name : 'Default Character';
+  let userCharacter = profiles.length > 1 ? characters[userSignedIn].character_name : 'Default Character';
 
-  let characterCareer;
-  try {
-    characterCareer = portfolios[userSignedIn].career_path;
-  } 
-  catch (err) {
-    characterCareer = "Default Career"
-  }
-  const characterStats = stats[userSignedIn] || '';
-  const characterSkills = skills[userSignedIn] || '';
+  let characterCareer = portfolios.length > 1 ? portfolios[userSignedIn].career_path : 'Default Career'
 
-  // const skillsList = profiles.length > 1 && Object.keys(characterSkills)
-  // const skillsMap = skillsList.length > 1 && skillsList.map(skill => <li>{skill}: {characterSkills[skill]} / 10</li>)
-  // const skillsDisplay = skillsMap.length > 1 && skillsMap.slice(2)
+  let characterStats = stats.length > 1 ? stats[userSignedIn] : null;
+
+  let characterSkills = skills.length > 1 ? skills[userSignedIn] : null;
+
 
   return (
     <div>
@@ -44,9 +31,8 @@ export default function Dashboard(props) {
         <div id="resources-status">
           <h3>Resources</h3>
           <ul className="stats-list">
-            {characterStats && 
-              <li>Funds: ${characterStats.funds}</li>
-            }
+            {characterStats &&
+              <li>Funds: ${characterStats.funds}</li>            }
             {characterStats && 
               <li>Happiness: {characterStats.happiness}/100</li>
             }
