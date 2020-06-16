@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import CharacterGenerator from './CharacterGenerator'
 import Status from './Status'
 import Dashboard from './Dashboard'
 
@@ -93,8 +94,10 @@ function App() {
   
   return (
     <div className="App">
+      <CharacterGenerator />
       <Status values={state} />
       <Dashboard />
+      
     </div>
   );
 }
