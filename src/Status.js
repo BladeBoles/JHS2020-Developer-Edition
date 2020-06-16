@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, {useEffect} from 'react';
 
 export default function Dashboard(props) {
@@ -18,7 +19,7 @@ export default function Dashboard(props) {
     <div>
       <section>
         {profiles.length > 1 && 
-          <h1>{userCharacter}, "{characterCareer} Developer"</h1>
+          <h1>{userCharacter}, `{characterCareer} Developer`</h1>
         }
 
         <div className="image-container">
