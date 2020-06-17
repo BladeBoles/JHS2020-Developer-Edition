@@ -46,7 +46,6 @@ const initialValues = {
   current_week: 1
 };
 
-
 const CharacterGenerator = () => {
 
   const {
@@ -58,8 +57,111 @@ const CharacterGenerator = () => {
     handleSubmit
   } = useCustomForm({
     initialValues,
-    onSubmit: values => console.log({ values })
+    onSubmit: (values) => {
+      console.log(values)
+      const {
+        character_owner, 
+        character_name, 
+        character_avatar,
+        pet_name,
+        pet_type,
+        pet_avatar
+      } = values.values;
+      const new_character = {
+        character_owner, 
+        character_name, 
+        character_avatar,
+        pet_name,
+        pet_type,
+        pet_avatar
+      }
+      console.log("new_character object: ", new_character)
+
+      const {
+        portfolio_owner,
+        career_path,
+        background,
+        left_job,
+        personality,
+        education,
+        bootcamp,
+        project_1_name,
+        project_1_description,
+        project_1_image,
+        project_2_name,
+        project_2_description,
+        project_2_image,
+        project_3_name,
+        project_3_description,
+        project_3_image
+      } = values.values;
+      const new_portfolio = {
+        portfolio_owner,
+        career_path,
+        background,
+        left_job,
+        personality,
+        education,
+        bootcamp,
+        project_1_name,
+        project_1_description,
+        project_1_image,
+        project_2_name,
+        project_2_description,
+        project_2_image,
+        project_3_name,
+        project_3_description,
+        project_3_image
+      }
+      console.log("new_portfolio object: ", new_portfolio)
+
+      const {
+        skills_owner,
+        front_end,
+        back_end,
+        computer_science,
+        soft_skills,
+        luck
+      } = values.values;
+
+      const new_skills = {
+        skills_owner,
+        front_end,
+        back_end,
+        computer_science,
+        soft_skills,
+        luck
+      }
+      console.log("new_skills object: ", new_skills)
+
+      const {
+        stats_owner,
+        funds,
+        happiness,
+        connections,
+        energy,
+        health,
+        current_week
+      } = values.values;
+
+      const new_stats = {
+        stats_owner,
+        funds,
+        happiness,
+        connections,
+        energy,
+        health,
+        current_week
+      }
+      console.log("new_stats object: ", new_stats)
+    }
+
+
   })
+
+  const createNewCharacter = (new_character, new_portfolio, new_skills, new_stats) => {
+    
+  }
 
   return (
     <div>
@@ -133,6 +235,7 @@ const CharacterGenerator = () => {
         <select 
           name="bootcamp" 
           id="bootcamp"
+          onChange={handleChange}
         >
           <option value="none">
           complete the entire freeCodeCamp curriculum.
@@ -230,9 +333,6 @@ const CharacterGenerator = () => {
         >
           Generate Character!
         </button>
-
-        
-
       </form>
     </ div>
         
