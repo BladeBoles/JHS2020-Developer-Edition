@@ -6,26 +6,26 @@ export default function Status(props) {
   const { profiles, characters, stats, skills, portfolios } = props.values;
   console.log("lengths: ", characters.length, stats.length, profiles.length, skills.length, portfolios.length)
   let userSignedIn = 1;
-  let charToDisplay = 3;
+  let charToDisplay = 0;
 
-  let userCharacter = characters[charToDisplay] 
-    ? characters[charToDisplay].character_name : "Default Name";
+  let userCharacter = characters  
+    ? characters[characters.length - 1].character_name : "Default Name";
 
-  let characterCareer = portfolios[charToDisplay]
-    ? portfolios[charToDisplay].career_path: "Middle End";
+  let characterCareer = portfolios
+    ? portfolios[portfolios.length - 1].career_path: "Middle End";
 
-  let characterStats = stats[charToDisplay]
-    ? stats[charToDisplay] : null;
+  let characterStats = stats
+    ? stats[stats.length - 1] : null;
 
-  let characterSkills = skills[charToDisplay] 
-    ? skills[skills.length] : null;
+  let characterSkills = skills 
+    ? skills[skills.length - 1]: null;
 
 
   return (
     <div>
       <section>
         {profiles.length > 1 && 
-          <h1>{userCharacter}, `{characterCareer} Developer`</h1>
+          <h1>{userCharacter}, "{characterCareer} Developer"</h1>
         }
 
         <div className="image-container">
