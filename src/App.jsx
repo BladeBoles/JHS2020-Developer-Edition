@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import { Route, Switch } from 'react-router-dom';
 import CharacterGenerator from './CharacterGenerator'
 import Status from './Status'
 import Dashboard from './Dashboard'
@@ -94,10 +95,18 @@ function App() {
   
   return (
     <div className="App">
-      <CharacterGenerator />
-      <Status values={state} />
-      <Dashboard />
+      <Route
+        path="/generator"
+        component={CharacterGenerator}
+      />
       
+      <Route path="/dashboard">
+        <Status values={state} />
+      </Route>
+      
+      <Route path="/dashboard">
+        <Dashboard />
+      </Route>
     </div>
   );
 }

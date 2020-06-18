@@ -1,18 +1,24 @@
 /* eslint-disable react/prop-types */
 import React, {useEffect} from 'react';
 
-export default function Dashboard(props) {
+export default function Status(props) {
+  console.log("props?: ", props)
   const { profiles, characters, stats, skills, portfolios } = props.values;
-  console.log(portfolios)
-  let userSignedIn = profiles.length > 1 ? (profiles[0].account_id - 1) : 0;
+  console.log("lengths: ", characters.length, stats.length, profiles.length, skills.length, portfolios.length)
+  let userSignedIn = 1;
+  let charToDisplay = 3;
 
-  let userCharacter = profiles.length > 1 ? characters[userSignedIn].character_name : 'Default Character';
+  let userCharacter = characters[charToDisplay] 
+    ? characters[charToDisplay].character_name : "Default Name";
 
-  let characterCareer = portfolios.length > 1 ? portfolios[userSignedIn].career_path : 'Default Career'
+  let characterCareer = portfolios[charToDisplay]
+    ? portfolios[charToDisplay].career_path: "Middle End";
 
-  let characterStats = stats.length > 1 ? stats[userSignedIn] : null;
+  let characterStats = stats[charToDisplay]
+    ? stats[charToDisplay] : null;
 
-  let characterSkills = skills.length > 1 ? skills[userSignedIn] : null;
+  let characterSkills = skills[charToDisplay] 
+    ? skills[skills.length] : null;
 
 
   return (

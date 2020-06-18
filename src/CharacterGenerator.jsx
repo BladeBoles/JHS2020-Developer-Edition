@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import useCustomForm from "./CustomForm"
+import { Link } from 'react-router-dom';
 
 const initialValues = {
   // new_character: {}
@@ -154,13 +155,51 @@ const CharacterGenerator = () => {
         current_week
       }
       console.log("new_stats object: ", new_stats)
+
+      return createNewCharacter(new_character, new_portfolio, new_skills, new_stats)
     }
 
+    
 
   })
 
-  const createNewCharacter = (new_character, new_portfolio, new_skills, new_stats) => {
-    
+  const createNewCharacter = async (new_character, new_portfolio, new_skills, new_stats) => {
+    const character_response = await fetch('http://localhost:8000/characters', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(new_character)
+    })
+
+    const portfolio_response = await fetch('http://localhost:8000/portfolios', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(new_portfolio)
+    })
+
+    const skills_response = await fetch('http://localhost:8000/skills', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(new_skills)
+    })
+
+    const stats_response = await fetch('http://localhost:8000/stats', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(new_stats)
+    })
+
   }
 
   return (
@@ -326,13 +365,15 @@ const CharacterGenerator = () => {
           onChange={handleChange}
         />
         <p>will be there to support you!</p>
-        <button
-          type="submit"
-          form="character-form"
-          value="Generate"
-        >
-          Generate Character!
-        </button>
+        <Link to="/dashboard">
+          <button
+            type="submit"
+            form="character-form"
+            value="Generate"
+          >
+            Generate Character!
+          </button>
+        </Link> 
       </form>
     </ div>
         
