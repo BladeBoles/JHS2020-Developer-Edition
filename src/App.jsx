@@ -74,6 +74,13 @@ function App() {
       ]
   })
 
+  const [toggled, setToggled] =  useState(false)
+
+  function toggleGenerated() {
+    console.log("Toggled!!!")
+    setToggled(!toggled)
+  }
+
   useEffect(() => {
     const fetchProfiles = async () => {
       const profiles = await (await fetch('http://localhost:8000/profiles')).json()
@@ -91,14 +98,15 @@ function App() {
       })
     }
     fetchProfiles();
-  }, [])
+  }, [toggled])
   
   return (
     <div className="App">
       <Route
         path="/generator"
-        component={CharacterGenerator}
-      />
+      >
+        <CharacterGenerator toggleGenerated={toggleGenerated} />
+      </ Route>
       
       <Route path="/dashboard">
         <Status values={state} />

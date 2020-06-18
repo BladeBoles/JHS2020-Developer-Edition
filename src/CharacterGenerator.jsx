@@ -47,7 +47,7 @@ const initialValues = {
   current_week: 1
 };
 
-const CharacterGenerator = () => {
+const CharacterGenerator = (props) => {
 
   const {
     values,
@@ -156,14 +156,19 @@ const CharacterGenerator = () => {
       }
       console.log("new_stats object: ", new_stats)
 
-      return createNewCharacter(new_character, new_portfolio, new_skills, new_stats)
+      createNewCharacter(new_character, new_portfolio, new_skills, new_stats);
     }
 
     
 
   })
 
+  const theToggler = () => {
+    props.toggleGenerated()
+  }
+
   const createNewCharacter = async (new_character, new_portfolio, new_skills, new_stats) => {
+    console.log("POSTing")
     const character_response = await fetch('http://localhost:8000/characters', {
       method: 'POST',
       credentials: 'same-origin',
@@ -365,16 +370,19 @@ const CharacterGenerator = () => {
           onChange={handleChange}
         />
         <p>will be there to support you!</p>
-        <Link to="/dashboard">
           <button
             type="submit"
             form="character-form"
             value="Generate"
           >
-            Generate Character!
+            Create Character
           </button>
-        </Link> 
       </form>
+      <Link to="/dashboard" onClick={theToggler}>
+        <button>
+        I'm done making characters, take me to the dashboard!
+        </button>
+      </Link>
     </ div>
         
   )
