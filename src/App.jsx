@@ -19,7 +19,7 @@ function App() {
           character_name: "Default Character Name",
           character_avatar: "",
           pet_name: "Default Pet Name",
-          pet_type: "Dog",
+          pet_type: "dog",
           pet_avatar: ""
         }
       ],

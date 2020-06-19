@@ -8,7 +8,7 @@ const initialValues = {
   character_name: "New Character",
   character_avatar: "https://www.placecage.com/100/100",
   pet_name: "Killer",
-  pet_type: "Fish",
+  pet_type: "fish",
   pet_avatar: "https://www.placecage.com/200/200",
 
   // new_portfolio: {}
@@ -156,13 +156,230 @@ const CharacterGenerator = (props) => {
       }
       console.log("new_stats object: ", new_stats)
 
-      createNewCharacter(new_character, new_portfolio, new_skills, new_stats);
+      calculateNewCharacter(new_character, new_portfolio, new_skills, new_stats);
     }
 
     
 
   })
 
+  // Will move createCharacter to backend later.  But for now, since calculations have
+  // to be done on the front end a lot anyway, I'll just do the logic here.
+  const calculateNewCharacter = (new_character, new_portfolio, new_skills, new_stats) => {
+    console.log("calculating new_stats, ", new_stats.happiness)
+    switch(new_character.pet_type) {
+    case "dog":
+      new_skills.soft_skills += 1
+      new_stats.happiness += 20
+      new_stats.funds -= 2000
+      new_stats.connections += 1
+      new_stats.health += 20
+      console.log("calculating new_stats, ", new_stats.happiness)
+      break;
+    
+    case "Cat":
+
+      new_skills.front_end += 1
+      new_stats.happiness += 10
+      new_stats.funds -= 500
+      new_stats.health += 10
+      break;
+
+    default:
+      new_skills.luck += 1
+    }
+
+    switch(new_portfolio.career_path) {
+    case "Front End":
+      new_skills.front_end += 2
+      new_skills.back_end += 1
+      new_skills.computer_science += 1
+      new_skills.soft_skills += 2
+      new_skills.luck += 4
+      break;
+
+    case "Back End":
+      new_skills.front_end += 1
+      new_skills.back_end += 2
+      new_skills.computer_science += 2
+      new_skills.soft_skills += 1
+      new_skills.luck += 4
+      break;
+
+    default:
+      new_skills.front_end += 2
+      new_skills.back_end += 2
+      new_skills.computer_science += 2
+      new_skills.luck += 1
+    }
+
+    switch(new_portfolio.background) {
+    case "Accountant":
+      new_stats.funds += 10000
+      new_stats.happiness -= 10
+      new_stats.connections += 2
+      new_stats.health -= 10
+      break;
+
+    case "Salesperson":
+      new_skills.soft_skills += 2
+      new_stats.funds += 5000
+      new_stats.happiness -= 20
+      new_stats.connections += 5
+      new_stats.health -= 10
+      break;
+
+    case "Artist":
+      new_skills.front_end += 1
+      new_skills.computer_science -= 1
+      new_stats.funds -= 5000
+      new_stats.happiness += 10
+      new_stats.connections += 2
+      new_stats.energy += 10
+      new_stats.health += 10
+      break;
+
+    case "FryCook":
+      new_skills.soft_skills += 1
+      new_skills.luck -= 1
+      new_stats.funds -= 10000
+      new_stats.happiness -= 50
+      new_stats.energy -= 20
+      new_stats.health -= 20
+      break;
+    case "Criminal":
+      new_skills.back_end += 1
+      new_skills.computer_science += 1
+      new_skills.luck += 1
+      new_stats.funds += 20000
+      new_stats.happiness -= 30
+      new_stats.connection += 3
+      new_stats.energy += 10
+      new_stats.health -= 25
+      break;
+    default:
+
+
+    }
+
+    switch(new_portfolio.left_job) {
+    case "RageQuit":
+      new_stats.happiness -= 10
+      new_stats.connections -= 1
+      break;
+    case "TwoWeeks":
+      new_stats.funds += 1000
+      new_stats.happiness += 10
+      new_stats.current_week += 2
+      break;
+    case "FourWeeks":
+      new_stats.funds += 2000
+      new_stats.connections += 1
+      new_stats.current_week += 4
+      break;
+    default:
+    }
+
+    switch(new_portfolio.personality) {
+    //artsy, nerdy, charismatic, basic
+    case "artsy":
+      new_skills.front_end += 1
+      new_stats.connections += 1
+      new_stats.happiness += 10
+      break;
+
+    case "nerdy":
+      new_skills.back_end += 1
+      new_stats.computer_science += 3
+      new_stats.connections -= 1
+      break;
+
+    case "charismatic":
+      new_skills.soft_skills += 2
+      new_skills.computer_science -= 1
+      new_stats.connections += 2
+      break;
+
+    case "basic":
+      new_skills.luck += 2
+      new_stats.connections += 1
+      new_stats.energy += 10
+    }
+
+    switch(new_portfolio.education) {
+    // art, basketweaving, biology, business, none
+
+    case "art":
+      new_skills.front_end += 1
+      new_stats.funds -= 10000
+      new_stats.connections += 2
+      break;
+
+    case "basketweaving":
+      new_stats.funds -= 5000
+      new_stats.connections += 1
+      break;
+
+    case "biology":
+      new_skills.computer_science += 1
+      new_stats.funds -= 12000
+      new_stats.connections += 2
+      new_stats.health += 10
+      break;
+
+    case "business":
+      new_skills.soft_skills += 1
+      new_stats.funds -= 10000
+      new_stats.connections += 3
+      break;
+
+    case "none":
+      break;
+
+    default:
+
+    }
+
+    switch(new_portfolio.bootcamp) {
+    // none, scammy, good, great
+    case "none":
+      break;
+
+    case "scammy":
+      new_skills.front_end += 2
+      new_skills.back_end += 1
+      new_stats.funds -= 5000
+      new_stats.connections += 2
+      new_stats.current_week += 6
+      break;
+
+    case "good":
+      new_skills.front_end += 3
+      new_skills.back_end += 3
+      new_skills.computer_science += 1
+      new_skills.soft_skills += 2
+      new_stats.funds -= 10000
+      new_stats.connections += 4
+      new_stats.current_week += 16
+      break;
+
+    case "great":
+      new_skills.front_end += 4
+      new_skills.back_end += 4
+      new_skills.computer_science += 3
+      new_skills.soft_skills += 3
+      new_stats.funds -= 16000
+      new_stats.connections += 6
+      new_stats.current_week += 24
+      break;
+    default:
+    }
+
+    console.log("stats object: ", new_stats)
+
+    createNewCharacter(new_character, new_portfolio, new_skills, new_stats)
+    
+  }
   const theToggler = () => {
     props.toggleGenerated()
   }
@@ -370,13 +587,13 @@ const CharacterGenerator = (props) => {
           onChange={handleChange}
         />
         <p>will be there to support you!</p>
-          <button
-            type="submit"
-            form="character-form"
-            value="Generate"
-          >
+        <button
+          type="submit"
+          form="character-form"
+          value="Generate"
+        >
             Create Character
-          </button>
+        </button>
       </form>
       <Link to="/dashboard" onClick={theToggler}>
         <button>
