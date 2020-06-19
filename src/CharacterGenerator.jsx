@@ -174,7 +174,6 @@ const CharacterGenerator = (props) => {
       new_stats.funds -= 2000
       new_stats.connections += 1
       new_stats.health += 20
-      console.log("calculating new_stats, ", new_stats.happiness)
       break;
     
     case "Cat":
@@ -188,7 +187,7 @@ const CharacterGenerator = (props) => {
     default:
       new_skills.luck += 1
     }
-
+    console.log("calculating new_stats, ", new_stats.happiness)
     switch(new_portfolio.career_path) {
     case "Front End":
       new_skills.front_end += 2
@@ -212,7 +211,7 @@ const CharacterGenerator = (props) => {
       new_skills.computer_science += 2
       new_skills.luck += 1
     }
-
+    console.log("calculating new_stats, ", new_stats.happiness)
     switch(new_portfolio.background) {
     case "Accountant":
       new_stats.funds += 10000
@@ -261,7 +260,7 @@ const CharacterGenerator = (props) => {
 
 
     }
-
+    console.log("calculating new_stats, ", new_stats.happiness)
     switch(new_portfolio.left_job) {
     case "RageQuit":
       new_stats.happiness -= 10
